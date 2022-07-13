@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DiseaseService} from "../services/disease.service";
 
 @Component({
   selector: 'app-form-input-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormInputPageComponent implements OnInit {
 
-  constructor() { }
+  patientDiseasePrediction: string = '';
+
+  constructor(private diseaseService: DiseaseService) { }
 
   ngOnInit(): void {
+    this.diseaseService.getDisease().subscribe(disease => {
+      this.patientDiseasePrediction = disease;
+    });
   }
 
 }
